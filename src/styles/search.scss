@@ -1,0 +1,158 @@
+// SearchBar.scss
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.search-pop {
+  width: 50%;
+
+
+}
+
+.search-container {
+  width: 100%;
+
+
+  .search-bar {
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px 10px 10px;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    border: none;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+
+  // Hover effect for the container
+  &:hover .search-bar {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  // Animation for search icon when input is focused
+  &:focus-within .search-icon svg {
+    stroke: white;
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.8;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .search-container {
+    .search-bar {
+      padding: 14px 18px 14px 50px;
+      font-size: 15px;
+    }
+
+    .search-icon {
+      left: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+// Additional utility classes
+.search-container {
+  &.large {
+    max-width: 800px;
+
+    .search-bar {
+      padding: 20px 24px 20px 60px;
+      font-size: 18px;
+    }
+
+    .search-icon {
+      left: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.small {
+    max-width: 400px;
+
+    .search-bar {
+      padding: 12px 16px 12px 45px;
+      font-size: 14px;
+    }
+
+    .search-icon {
+      left: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.dark-theme {
+    .search-bar {
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      &:focus {
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+
+  &.light-theme {
+    .search-bar {
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      &:focus {
+        background: rgba(255, 255, 255, 1);
+      }
+    }
+
+    .search-icon svg {
+      stroke: rgba(0, 0, 0, 0.6);
+    }
+
+    &:focus-within .search-icon svg,
+    .search-icon:hover svg {
+      stroke: rgba(0, 0, 0, 0.8);
+    }
+  }
+}

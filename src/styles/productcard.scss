@@ -1,0 +1,37 @@
+.card-prod {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.card-prod-img {
+  width: 100%;
+  box-sizing: border-box;
+
+  >img {
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+}
+
+.card-prod-btn {
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+
+  >button {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0px;
+    background-color: #BD3757;
+    box-sizing: border-box;
+  }
+}

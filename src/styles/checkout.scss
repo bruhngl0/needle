@@ -1,0 +1,354 @@
+.checkout-page {
+  background-color: #F4E6CD; // cream background
+  min-height: calc(100vh - 65px);
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+
+  .checkout-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .checkout-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #222;
+    margin: 0 0 2rem 0;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(189, 55, 87, 0.15);
+    padding-bottom: 1rem;
+  }
+
+  .checkout-error-banner {
+    background-color: rgba(189, 55, 87, 0.1);
+    border: 1px solid #BD3757;
+    color: #BD3757;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  // Left Column Form
+  .checkout-form-section {
+    background: #fff;
+    border: 1px solid rgba(189, 55, 87, 0.15);
+    padding: 2.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+
+    .section-subtitle {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #BD3757;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+
+      &.spacing-top {
+        margin-top: 2.5rem;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+
+      label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #555;
+        letter-spacing: 0.5px;
+      }
+
+      input {
+        padding: 0.8rem 1rem;
+        border: 1px solid #ddd;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border 0.2s;
+
+        &:focus {
+          border-color: #BD3757;
+        }
+      }
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .payment-card-mockup {
+      background: #fafafa;
+      border: 1px solid #f0f0f0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+  }
+
+  // Right Column Summary
+  .checkout-summary-section {
+    background: #fff;
+    border: 1px solid rgba(189, 55, 87, 0.15);
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+
+    .summary-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #333;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.8rem;
+    }
+
+    .checkout-items-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 5px;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(189, 55, 87, 0.2);
+      }
+
+      .preview-row {
+        display: grid;
+        grid-template-columns: 50px 1fr auto;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .preview-img {
+        width: 50px;
+        height: 65px;
+        object-fit: cover;
+        border: 1px solid #eee;
+        background: #f9f9f9;
+      }
+
+      .preview-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .preview-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .preview-details {
+        font-size: 0.75rem;
+        color: #777;
+      }
+
+      .preview-total {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #333;
+      }
+    }
+
+    .summary-divider {
+      height: 1px;
+      background: #eee;
+      margin: 1.2rem 0;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.8rem;
+
+      span:last-child {
+        font-weight: 600;
+        color: #333;
+      }
+
+      &.grand-total {
+        font-size: 1.15rem;
+        margin-bottom: 1.5rem;
+
+        span:first-child {
+          font-weight: 700;
+          color: #222;
+        }
+
+        span:last-child {
+          font-weight: 700;
+          color: #BD3757;
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    .place-order-btn {
+      width: 100%;
+      background-color: #BD3757;
+      color: #F4E6CD;
+      border: 1px solid #BD3757;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      padding: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 0;
+
+      &:hover:not(:disabled) {
+        background-color: transparent;
+        color: #BD3757;
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        border-color: #ccc;
+        color: #777;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Success Template
+.checkout-success-page {
+  background-color: #F4E6CD;
+  min-height: calc(100vh - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  .success-card {
+    background: #fff;
+    border: 1px solid rgba(189, 55, 87, 0.15);
+    padding: 4rem 3rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    animation: zoomIn 0.5s ease-out;
+
+    .success-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: rgba(46, 125, 50, 0.1);
+      color: #2e7d32;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #222;
+      margin: 0 0 0.8rem 0;
+      letter-spacing: 0.5px;
+    }
+
+    .order-number {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .success-msg {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .redirect-countdown {
+      p {
+        font-size: 0.8rem;
+        color: #888;
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .view-orders-btn {
+      display: inline-block;
+      background-color: #BD3757;
+      color: #F4E6CD;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid #BD3757;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: transparent;
+        color: #BD3757;
+      }
+    }
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 992px) {
+  .checkout-page {
+    padding: 2rem 1rem;
+
+    .checkout-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .checkout-form-section {
+      padding: 1.5rem;
+    }
+  }
+}

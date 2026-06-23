@@ -1,0 +1,53 @@
+.page2-main {
+  background-color: #F4E6CD;
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 3rem 1rem 6rem 1rem;
+  box-sizing: border-box;
+}
+
+.pattern-one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+
+  >img {
+    width: 123px;
+  }
+}
+
+.pattern-two {
+  margin-top: 1rem;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  >img {
+    width: 71px;
+  }
+}
+
+.page2-des {
+  color: #BD3757;
+}
+
+
+.page2-products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  justify-items: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
