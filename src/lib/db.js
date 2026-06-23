@@ -1,5 +1,4 @@
 import pg from "pg";
-import sqlite3 from "sqlite3";
 import bcrypt from "bcryptjs";
 import path from "path";
 import fs from "fs";
@@ -20,17 +19,26 @@ if (connectionString) {
   });
 } else {
   console.warn("⚠️ DATABASE_URL environment variable is missing. Falling back to SQLite database.");
+}
+
+async function getSqliteDb() {
+  if (sqliteDb) return sqliteDb;
+  const sqlite3 = (await import("sqlite3")).default;
   let dbPath = path.join(process.cwd(), "database.sqlite");
   const serverDbPath = path.join(process.cwd(), "../server/database.sqlite");
   if (fs.existsSync(serverDbPath)) {
     dbPath = serverDbPath;
   }
-  sqliteDb = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-      console.error("SQLite connection error:", err.message);
-    } else {
-      console.log("Connected to SQLite database at:", dbPath);
-    }
+  return new Promise((resolve, reject) => {
+    sqliteDb = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+        console.error("SQLite connection error:", err.message);
+        reject(err);
+      } else {
+        console.log("Connected to SQLite database at:", dbPath);
+        resolve(sqliteDb);
+      }
+    });
   });
 }
 
@@ -54,15 +62,14 @@ export const dbRun = async (sql, params = []) => {
       lastID: isInsert && result.rows[0] ? result.rows[0].id : null,
       changes: result.rowCount
     };
-  } else if (sqliteDb) {
+  } else {
+    const db = await getSqliteDb();
     return new Promise((resolve, reject) => {
-      sqliteDb.run(sql, params, function (err) {
+      db.run(sql, params, function (err) {
         if (err) reject(err);
         else resolve({ lastID: this.lastID, changes: this.changes });
       });
     });
-  } else {
-    throw new Error("No active database connection.");
   }
 };
 
@@ -71,15 +78,14 @@ export const dbGet = async (sql, params = []) => {
     const pgSql = translateQuery(sql);
     const result = await pool.query(pgSql, params);
     return result.rows[0] || null;
-  } else if (sqliteDb) {
+  } else {
+    const db = await getSqliteDb();
     return new Promise((resolve, reject) => {
-      sqliteDb.get(sql, params, (err, row) => {
+      db.get(sql, params, (err, row) => {
         if (err) reject(err);
         else resolve(row || null);
       });
     });
-  } else {
-    throw new Error("No active database connection.");
   }
 };
 
@@ -88,15 +94,14 @@ export const dbAll = async (sql, params = []) => {
     const pgSql = translateQuery(sql);
     const result = await pool.query(pgSql, params);
     return result.rows;
-  } else if (sqliteDb) {
+  } else {
+    const db = await getSqliteDb();
     return new Promise((resolve, reject) => {
-      sqliteDb.all(sql, params, (err, rows) => {
+      db.all(sql, params, (err, rows) => {
         if (err) reject(err);
         else resolve(rows || []);
       });
     });
-  } else {
-    throw new Error("No active database connection.");
   }
 };
 
